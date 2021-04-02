@@ -58,13 +58,13 @@ public class OpenSky {
             }
 
             conn.disconnect();
-            /*
+
             Gson gson = new Gson();
-            Dados dados = gson.fromJson(new String(output.getBytes()), Dados.class);
+            Data dados = gson.fromJson(new String(output.getBytes()), Data.class);
 
             System.out.println("TIME: " + dados.getTime());
             System.out.println("STATES: " + Arrays.toString(dados.getStates()[0]));
-            */
+            
         } catch (IOException ex) {
             //Logger.getLogger(APIRest.class.getName()).log(Level.SEVERE, null, ex);
         }
