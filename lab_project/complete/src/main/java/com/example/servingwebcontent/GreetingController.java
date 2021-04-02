@@ -15,13 +15,14 @@ public class GreetingController {
 	}
 
 	@GetMapping("/")
-	public String index(@RequestParam(name="name", required=false, defaultValue="from Rupesa") String name, Model model) {
+	public String index(@RequestParam(name="name", required=false, defaultValue="from Rupesa")String name, Model model) {
 	
-		name = OpenSky.getJson();
-		System.out.println(name);
+		Data dados = OpenSky.getJson();
+		//System.out.println(name);
 
-		model.addAttribute("teste", 1);
-		model.addAttribute("name", name);
+		model.addAttribute("teste", "glugluglu");
+		model.addAttribute("time", dados.getTimeFormated());
+                model.addAttribute("states", dados.getStates());
 		return "greeting";
 	}
 

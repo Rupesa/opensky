@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p th:text="'Hi, ' + ${teste} + '!'" />
+    <p th:text="'Time of request: ' + ${time}" />
+    
+    <table>
+    <thead>
+        <tr>
+            <th> icao24 </th>
+            <th> callSign </th>
+            <th> origin_country </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr th:each="state : ${states}">
+            <td><span th:text="${state[0]}"> ICAO </span></td>
+            <td><span th:text="${state[1]}"> callSign </span></td>
+            <td><span th:text="${state[2]}"> origin_country </span></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
