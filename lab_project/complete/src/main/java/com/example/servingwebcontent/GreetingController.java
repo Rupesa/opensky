@@ -20,6 +20,7 @@ public class GreetingController {
 		name = OpenSky.getJson();
 		System.out.println(name);
 
+		model.addAttribute("teste", 1);
 		model.addAttribute("name", name);
 		return "greeting";
 	}

@@ -10,35 +10,11 @@ public class OpenSky {
     
     public static String getJson() {
 
-        /*
-        String inline = "";
-
-        try {
-            URL url = new URL("https://opensky-network.org/api");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-
-            conn.setRequestMethod("GET");
-            conn.connect();
-            int responsecode = conn.getResponseCode();
-            if(responsecode != 200)
-                throw new RuntimeException("HttpResponseCode: " +responsecode);
-            else {
-                Scanner sc = new Scanner(url.openStream());
-                while(sc.hasNext()) {
-                    inline+=sc.nextLine();
-                }
-                sc.close();
-            }
-        } catch(IOException ex) {
-             
-        }
-        */
-
         String output = "";
 
         try {
-            String url = "https://opensky-network.org/api/states/all";
+            //String url = "https://opensky-network.org/api/states/all";
+            String url = "https://opensky-network.org/api/states/all?lamin=45.8389&lomin=5.9962&lamax=47.8229&lomax=10.5226";
 
             HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 
@@ -64,6 +40,9 @@ public class OpenSky {
 
             System.out.println("TIME: " + dados.getTime());
             System.out.println("STATES: " + Arrays.toString(dados.getStates()[0]));
+
+            output = output + "TIME: " + dados.getTime()+"\n\n";
+
             
         } catch (IOException ex) {
             //Logger.getLogger(APIRest.class.getName()).log(Level.SEVERE, null, ex);
