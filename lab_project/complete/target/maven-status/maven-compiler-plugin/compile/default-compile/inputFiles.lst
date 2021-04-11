@@ -1,4 +1,7 @@
-C:\Users\pedro\OneDrive\Desktop\uni\2\ES\opensky\lab_project\complete\src\main\java\com\example\servingwebcontent\GreetingController.java
-C:\Users\pedro\OneDrive\Desktop\uni\2\ES\opensky\lab_project\complete\src\main\java\com\example\servingwebcontent\Data.java
-C:\Users\pedro\OneDrive\Desktop\uni\2\ES\opensky\lab_project\complete\src\main\java\com\example\servingwebcontent\OpenSky.java
-C:\Users\pedro\OneDrive\Desktop\uni\2\ES\opensky\lab_project\complete\src\main\java\com\example\servingwebcontent\ServingWebContentApplication.java
+/home/parallels/Desktop/es/lab_project/lab_project2/complete/src/main/java/com/example/messagingstompwebsocket/GreetingController.java
+/home/parallels/Desktop/es/lab_project/lab_project2/complete/src/main/java/com/example/messagingstompwebsocket/WebSocketConfig.java
+/home/parallels/Desktop/es/lab_project/lab_project2/complete/src/main/java/com/example/messagingstompwebsocket/MessagingStompWebsocketApplication.java
+/home/parallels/Desktop/es/lab_project/lab_project2/complete/src/main/java/com/example/messagingstompwebsocket/Greeting.java
+/home/parallels/Desktop/es/lab_project/lab_project2/complete/src/main/java/com/example/messagingstompwebsocket/Data.java
+/home/parallels/Desktop/es/lab_project/lab_project2/complete/src/main/java/com/example/messagingstompwebsocket/HelloMessage.java
+/home/parallels/Desktop/es/lab_project/lab_project2/complete/src/main/java/com/example/messagingstompwebsocket/OpenSky.java
