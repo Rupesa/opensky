@@ -20,16 +20,7 @@
     <p th:text="'Hi, ' + ${teste} + '!'" />
     -->
 
-    <div class="col-md-6">
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="connect">WebSocket connection:</label>
-                <button id="connect" class="btn btn-default" type="submit">Connect</button>
-                <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
-                </button>
-            </div>
-        </form>
-    </div>
+    <button id="send" class="btn btn-default" type="submit">Send</button>
 
     <p th:text="'Time of request: ' + ${time}" />
     
@@ -57,8 +48,7 @@
           <th>position_source</th>
         </tr>
     </thead>
-    <tbody>
-
+    <tbody id="table">
         <tr th:each="state : ${states}">
             <td><span th:text="${state[0]}"></span></td>
             <td><span th:text="${state[1]}"></span></td>

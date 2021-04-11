@@ -38,13 +38,10 @@ public class GreetingController {
 		return "greeting";
 	}
 
-	@MessageMapping("/hello")
-	@SendTo("/topic/greetings")
 	@GetMapping("/flights")
 	public String flights(@RequestParam(name="name", required=false, defaultValue="from Rupesa")String name, Model model) {
 	
 		Data dados = OpenSky.getJson();
-		//System.out.println(name);
 
 		model.addAttribute("teste", "glugluglu");
 		model.addAttribute("time", dados.getTimeFormated());
@@ -52,10 +49,20 @@ public class GreetingController {
 		return "flights";
 	}
 
+	@MessageMapping("/hello")
+	@SendTo("/topic/greetings")
+	public Data infoToJs(String data) throws Exception {
+		System.out.println("data");
+		Data dados = OpenSky.getJson();
+		return dados;
+	}
+
 	/* @MessageMapping("/hello")
 	@SendTo("/topic/greetings")
-	public Data infoToJs(Data data) throws Exception {
-		return data;
+	public String infoToJs(String data) throws Exception {
+		System.out.println("data");
+		return data+"2";
 	} */
+
 
 }
