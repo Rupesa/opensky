@@ -57,7 +57,7 @@ public class GreetingController {
 	public Data infoToJs(String data) throws Exception {
 		System.out.println(data);
 		Data dados = new Data();
-		if(data == "air"){
+		if(data.equals("air")){
 			Data preProcess = OpenSky.getJson();
 			String [][] preState = preProcess.getStates();
 
