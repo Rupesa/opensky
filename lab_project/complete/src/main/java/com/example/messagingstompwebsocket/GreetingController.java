@@ -1,5 +1,6 @@
 package com.example.messagingstompwebsocket;
 
+import java.util.Arrays;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class GreetingController {
 
-
+	private String[][] states;
 	/* @MessageMapping("/hello")
 	@SendTo("/topic/greetings")
 	public Greeting greeting1(HelloMessage message) throws Exception {
@@ -46,14 +47,38 @@ public class GreetingController {
 		model.addAttribute("teste", "glugluglu");
 		model.addAttribute("time", dados.getTimeFormated());
         model.addAttribute("states", dados.getStates());
+
+		states = dados.getStates();
 		return "flights";
 	}
 
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
 	public Data infoToJs(String data) throws Exception {
-		System.out.println("data");
-		Data dados = OpenSky.getJson();
+		System.out.println(data);
+		Data dados = new Data();
+		if(data == "air"){
+			Data preProcess = OpenSky.getJson();
+			String [][] preState = preProcess.getStates();
+
+			String[][] onGround = Arrays.stream(preState).filter(p -> p[8] == "false").toArray(String[][]::new);
+			dados.setTime(preProcess.getTime());
+			dados.setStates(onGround);
+		}
+		else if(data.equals("ground")){
+			
+			Data preProcess = OpenSky.getJson();
+			String [][] preState = preProcess.getStates();
+
+			String[][] onGround = Arrays.stream(preState).filter(p -> p[8] == "true").toArray(String[][]::new);
+			dados.setTime(preProcess.getTime());
+			dados.setStates(onGround);
+
+		}
+		else{
+			dados = OpenSky.getJson();
+		}
+		
 		return dados;
 	}
 

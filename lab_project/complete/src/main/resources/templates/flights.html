@@ -19,13 +19,28 @@
     <!--
     <p th:text="'Hi, ' + ${teste} + '!'" />
     -->
-
+ <!--
     <button id="send" class="btn btn-default" type="submit">Send</button>
 
-    <p th:text="'Time of request: ' + ${time}" />
+    <p th:text="'Time of request: ' + ${time}" />-->
     
-    <p>Airplanes currently in Switzerland airspace</p>
-    
+    <h2>Airplanes currently in Switzerland airspace</h2>
+
+
+    <div class="container">
+        <p>Please select your preference of viewing airplanes:</p>
+        <form>
+            <label class="radio-inline">
+              <input type="radio" id = "air" name="optradio" value = "air">Air
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id = "ground" name="optradio" value = "ground">Ground
+            </label>
+            <label class="radio-inline">
+              <input type="radio" id = "both" name="optradio" value = "both" checked>Both
+            </label>
+          </form>
+    </div>
     <table>
     <thead>
         <tr>

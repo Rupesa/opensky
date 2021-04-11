@@ -33,8 +33,8 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sendName() {
-    stompClient.send("/app/hello", {}, "Teste-Rui");
+function sendName(status) {
+    stompClient.send("/app/hello", {}, status);
 }
 
 function showGreeting(states) {
@@ -69,6 +69,7 @@ function showGreeting(states) {
 }
 
 $(function () {
+    var state = "both";
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
@@ -76,6 +77,18 @@ $(function () {
     connect();
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendName(); });
-    setInterval(function(){ sendName(); }, 8000);
+    setInterval(function(){ sendName(state); }, 8000);
+
+    $('input:radio[name=optradio]').click(function() {
+        var values = $('input:radio[name=optradio]:checked').map(function() {
+          return this.value
+        }).get();
+        
+        console.log("yoyoy");
+        console.log(values);
+        sendName(values);
+        state = values;
+        // do something with values array
+      })
 });
 
