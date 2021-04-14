@@ -1,25 +1,30 @@
 package com.example.messagingstompwebsocket;
 
+
+import com.example.repository.*;
+
 import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
-import org.springframework.stereotype.Controller;
+import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.stream.*;
+import java.util.List;
 
 @Controller
 public class GreetingController {
 
-	private String[][] states;
-	/* @MessageMapping("/hello")
-	@SendTo("/topic/greetings")
-	public Greeting greeting1(HelloMessage message) throws Exception {
-		Thread.sleep(1000); // simulated delay
-		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-	} */
+
+	@Autowired
+	FlightRepository flightRepository;
 
 	@GetMapping("/greeting")
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
@@ -48,7 +53,7 @@ public class GreetingController {
 		model.addAttribute("time", dados.getTimeFormated());
         model.addAttribute("states", dados.getStates());
 
-		states = dados.getStates();
+		
 		return "flights";
 	}
 
@@ -82,12 +87,34 @@ public class GreetingController {
 		return dados;
 	}
 
-	/* @MessageMapping("/hello")
-	@SendTo("/topic/greetings")
-	public String infoToJs(String data) throws Exception {
-		System.out.println("data");
-		return data+"2";
-	} */
+	@GetMapping(value = "/historic")
+	public String getAll(Model model){
+
+		List<Flight> historicFlights = flightRepository.findAll(Sort.by("firstSeen"));
+		model.addAttribute("flights", historicFlights);
+		return "historic";
+	}
+
+	@GetMapping(value = "/load")
+	public String persist(){
+		Flight[] fs1_7;
+		Flight[] fs8_14;
+
+		fs1_7  = OpenSky.getHistoric("1617231600","1617836400");
+		
+		fs8_14 = OpenSky.getHistoric("1617836400","1618393890"); //8 de abril a 14 de abril
+
+		Flight[] fs = Stream.concat(Arrays.stream(fs1_7), Arrays.stream(fs8_14))
+                      .toArray(Flight[]::new);
+		
+		
+		flightRepository.deleteAll();
+
+		flightRepository.saveAll(Arrays.asList(fs));
+
+		return "load";
+
+	}
 
 
 }

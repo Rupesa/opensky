@@ -53,4 +53,46 @@ public class OpenSky {
         return dados;
     }
 
+    public static Flight[] getHistoric(String begin, String end) {
+
+        String output = "";
+
+        Flight[] flights = null;
+
+        try {
+            //String url = "https://opensky-network.org/api/states/all";
+
+            String url = "https://opensky-network.org/api/flights/departure?airport=LSZH&begin="+begin+"&end="+end+"";
+            
+            //String url = "https://opensky-network.org/api/flights/departure?airport=LSZH&begin=1617836400&end=1618393890";
+
+            HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+
+            if (conn.getResponseCode() != 200) {
+                System.out.println("Erro " + conn.getResponseCode() + " ao obter dados da URL " + url);
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+
+            //String output = "";
+            String line;
+            while ((line = br.readLine()) != null) {
+                output += line;
+            }
+
+            conn.disconnect();
+
+            Gson gson = new Gson();
+            flights = gson.fromJson(new String(output.getBytes()), Flight[].class);
+            
+        } catch (IOException ex) {
+            //Logger.getLogger(APIRest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return flights;
+    }
+
 }
