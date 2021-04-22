@@ -1,0 +1,14 @@
+Para testar o kafka:
+
+Instalar o kafka (colocar o diretório num local acessível)
+
+cd kafka_2.13-2.7.0 (diretório do kafka)
+bin/zookeep-server-start.sh config/zookeeper.propertiescd kafka_2.13-2.7.0 (diretório do kafka)bin/kafka-server-start.sh config/server.properties
+
+correr spring-boot lab_project
+
+correr spring-boot kafka_consumer
+
+abrir o localhost:8080/flights
+
+abrir o http://localhost:8010/consume

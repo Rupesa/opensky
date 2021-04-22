@@ -1,0 +1,8 @@
+com/example/servingwebcontent/ServingWebContentApplication.java
+ com.example.servingwebcontent.ServingWebContentApplication
+com/example/servingwebcontent/OpenSky.java
+ com.example.servingwebcontent.OpenSky
+com/example/servingwebcontent/Data.java
+ com.example.servingwebcontent.Data
+com/example/servingwebcontent/GreetingController.java
+ com.example.servingwebcontent.GreetingController
